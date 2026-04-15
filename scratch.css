@@ -1,0 +1,324 @@
+/* =============================================
+   scratch.css — Slushy Noobz Fan Page Styles
+   Custom from-scratch stylesheet by Shay Russon
+   ============================================= */
+
+/* ---- CSS Reset & Base ---- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Body & Background ---- */
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #0d0f1a;
+  color: #e8e8f0;
+  line-height: 1.6;
+}
+
+/* ---- Back Navigation Bar ---- */
+.back-bar {
+  background-color: #161928;
+  padding: 0.75rem 2rem;
+  display: flex;
+  gap: 2rem;
+  border-bottom: 2px solid #2af0ff33;
+}
+
+.back-bar a {
+  color: #2af0ff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
+}
+
+.back-bar a:hover {
+  opacity: 0.7;
+}
+
+/* ---- Hero Section ---- */
+.hero-section {
+  background: linear-gradient(135deg, #0d0f1a 0%, #1a0d2e 40%, #0d1a2e 100%);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 60%, #2af0ff18 0%, transparent 70%),
+              radial-gradient(ellipse at 80% 20%, #a855f720 0%, transparent 50%);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.slush-badge {
+  display: inline-block;
+  background-color: #2af0ff22;
+  color: #2af0ff;
+  border: 1px solid #2af0ff44;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.4rem 1.2rem;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+}
+
+/* ---- Font Color: Hero Title ---- */
+.hero-title {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(4rem, 12vw, 9rem);
+  color: #2af0ff;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 40px #2af0ff55, 0 0 80px #2af0ff22;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.hero-tagline {
+  font-size: 1.1rem;
+  color: #a0a8c0;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  font-weight: 300;
+}
+
+/* ---- Font Color: Scroll Button ---- */
+.scroll-btn {
+  display: inline-block;
+  background: transparent;
+  color: #2af0ff;
+  border: 2px solid #2af0ff;
+  padding: 0.75rem 2rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+
+.scroll-btn:hover {
+  background: #2af0ff;
+  color: #0d0f1a;
+}
+
+/* ---- Content Wrapper div ---- */
+.content-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+/* ---- Section Divs ---- */
+.section-div {
+  padding: 4rem 0;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.section-div:last-child {
+  border-bottom: none;
+}
+
+/* ---- Font Family: Headings ---- */
+.section-heading {
+  font-family: 'Bangers', cursive;
+  font-size: 2.4rem;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.2rem;
+}
+
+/* ---- Font Color: Body Text ---- */
+.body-text {
+  font-size: 0.97rem;
+  color: #b0b8cc;
+  line-height: 1.85;
+  margin-bottom: 1.2rem;
+  font-weight: 300;
+}
+
+/* ---- Image Styles ---- */
+.content-img {
+  width: 100%;
+  border-radius: 4px;
+  margin: 1.5rem 0 0.5rem;
+  border: 1px solid #2af0ff22;
+}
+
+.img-caption {
+  font-size: 0.78rem;
+  color: #606880;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* ---- Nested Lists ---- */
+.top-list {
+  padding-left: 1.5rem;
+  margin-top: 0.8rem;
+}
+
+.top-list > li {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  margin-bottom: 0.8rem;
+  line-height: 1.7;
+}
+
+.nested-list {
+  list-style: disc;
+  padding-left: 1.4rem;
+  margin-top: 0.3rem;
+}
+
+.nested-list li {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: #a0a8c0;
+  margin-bottom: 0.2rem;
+}
+
+/* ---- Video Embed div ---- */
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid #2af0ff22;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---- Card Grid div ---- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.content-card {
+  background: #161928;
+  border: 1px solid #ffffff0f;
+  padding: 1.5rem 1.2rem;
+  border-radius: 4px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.content-card:hover {
+  border-color: #2af0ff44;
+  transform: translateY(-4px);
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.7rem;
+}
+
+.content-card h3 {
+  font-family: 'Bangers', cursive;
+  font-size: 1.2rem;
+  color: #2af0ff;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.content-card p {
+  font-size: 0.82rem;
+  color: #8890a8;
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* ---- Tableau Container ---- */
+.tableau-container {
+  margin-top: 1.5rem;
+  border: 1px solid #2af0ff22;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #161928;
+}
+
+/* ---- Anchor Links ---- */
+.anchor-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.anchor-btn {
+  background: #161928;
+  color: #a0a8c0;
+  border: 1px solid #ffffff18;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.82rem;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 100px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.anchor-btn:hover {
+  border-color: #2af0ff;
+  color: #2af0ff;
+}
+
+/* ---- Footer ---- */
+.scratch-footer {
+  background: #080a12;
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.85rem;
+  color: #404860;
+  border-top: 1px solid #ffffff08;
+}
+
+.scratch-footer a {
+  color: #2af0ff;
+  text-decoration: none;
+}
+
+.scratch-footer a:hover {
+  opacity: 0.7;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-title {
+    font-size: 4rem;
+  }
+}

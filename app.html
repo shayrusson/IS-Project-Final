@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Slushy Noobz Trivia Challenge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0d0f1a;
+      --surface: #161928;
+      --cyan: #2af0ff;
+      --purple: #a855f7;
+      --green: #22c55e;
+      --red: #ef4444;
+      --text: #e8e8f0;
+      --muted: #8890a8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .back-link {
+      position: fixed;
+      top: 1rem; left: 1.5rem;
+      color: var(--cyan);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .back-link:hover { opacity: 1; }
+
+    .app-container {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    /* TITLE SCREEN */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    .title-screen { text-align: center; }
+    .game-badge {
+      display: inline-block;
+      background: #2af0ff18;
+      color: var(--cyan);
+      border: 1px solid #2af0ff44;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.2rem;
+    }
+    .game-title {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(3.5rem, 12vw, 6rem);
+      color: var(--cyan);
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 30px #2af0ff44;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .game-subtitle {
+      font-family: 'Bangers', cursive;
+      font-size: 1.8rem;
+      color: var(--purple);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+    .game-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+    .btn-primary {
+      background: var(--cyan);
+      color: var(--bg);
+      border: none;
+      padding: 1rem 3rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px #2af0ff33;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid #ffffff18;
+      padding: 0.8rem 2rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* QUIZ SCREEN */
+    .progress-bar-wrap {
+      background: #ffffff10;
+      height: 4px;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--cyan);
+      border-radius: 4px;
+      transition: width 0.4s;
+    }
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .q-number { font-size: 0.78rem; letter-spacing: 0.15em; color: var(--cyan); text-transform: uppercase; font-weight: 700; }
+    .q-score { font-size: 0.78rem; letter-spacing: 0.1em; color: var(--muted); }
+    .question-card {
+      background: var(--surface);
+      border: 1px solid #ffffff0f;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .q-emoji { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+    .question-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .option-btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid #ffffff18;
+      padding: 1rem;
+      text-align: left;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s, transform 0.1s;
+      line-height: 1.4;
+    }
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--cyan);
+      transform: translateY(-1px);
+    }
+    .option-btn.correct { border-color: var(--green); background: #22c55e15; color: var(--green); }
+    .option-btn.wrong { border-color: var(--red); background: #ef444415; color: var(--red); }
+    .option-btn.reveal { border-color: var(--green); background: #22c55e15; color: var(--green); }
+    .option-btn:disabled { cursor: default; }
+
+    .feedback-bar {
+      text-align: center;
+      padding: 1rem;
+      font-weight: 700;
+      font-size: 1rem;
+      min-height: 52px;
+      margin-bottom: 1rem;
+      border-radius: 2px;
+    }
+    .feedback-bar.correct { background: #22c55e15; color: var(--green); border: 1px solid #22c55e33; }
+    .feedback-bar.wrong { background: #ef444415; color: var(--red); border: 1px solid #ef444433; }
+
+    .next-btn-wrap { text-align: center; }
+
+    /* RESULTS SCREEN */
+    .results-screen { text-align: center; }
+    .result-emoji { font-size: 4rem; margin-bottom: 1rem; display: block; }
+    .result-title { font-family: 'Bangers', cursive; font-size: 3.5rem; color: var(--cyan); letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+    .score-display {
+      font-size: 5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 1.5rem 0 0.5rem;
+      line-height: 1;
+    }
+    .score-display span { color: var(--muted); font-size: 2rem; font-weight: 300; }
+    .result-msg { color: var(--muted); font-size: 0.97rem; font-weight: 300; margin-bottom: 2.5rem; line-height: 1.7; }
+    .results-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<a href="scratch.html" class="back-link">← Back</a>
+
+<div class="app-container">
+
+  <!-- TITLE SCREEN -->
+  <div class="screen active" id="screen-title">
+    <div class="title-screen">
+      <div class="game-badge">🧊 Mini Game</div>
+      <h1 class="game-title">Slushy<br>Noobz</h1>
+      <div class="game-subtitle">Trivia Challenge</div>
+      <p class="game-desc">
+        Think you know everything about gaming culture, YouTube, and the Slushy Noobz vibe?
+        10 questions. No pressure. Okay, a little pressure.
+      </p>
+      <button class="btn-primary" onclick="startGame()">Let's Go 🎮</button>
+    </div>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div class="screen" id="screen-quiz">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+    <div class="q-meta">
+      <span class="q-number" id="q-number">Question 1 / 10</span>
+      <span class="q-score" id="q-score">Score: 0</span>
+    </div>
+    <div class="question-card">
+      <span class="q-emoji" id="q-emoji">🎮</span>
+      <div class="question-text" id="question-text">Question goes here</div>
+    </div>
+    <div class="options-grid" id="options-grid"></div>
+    <div class="feedback-bar" id="feedback-bar" style="display:none;"></div>
+    <div class="next-btn-wrap" id="next-btn-wrap" style="display:none;">
+      <button class="btn-primary" onclick="nextQuestion()">Next Question →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div class="screen" id="screen-results">
+    <div class="results-screen">
+      <span class="result-emoji" id="result-emoji">🏆</span>
+      <div class="result-title" id="result-title">Nice One!</div>
+      <div class="score-display" id="score-display">0 <span>/ 10</span></div>
+      <p class="result-msg" id="result-msg">How did you do?</p>
+      <div class="results-buttons">
+        <button class="btn-primary" onclick="startGame()">Play Again 🔄</button>
+        <a href="scratch.html" class="btn-secondary">Back to Fan Page</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const questions = [
+    { emoji: "🎮", q: "What platform are the Slushy Noobz primarily known for?", options: ["Twitch", "YouTube", "TikTok", "Instagram"], answer: 1 },
+    { emoji: "🧊", q: "Which word in 'Slushy Noobz' references being new or inexperienced at something?", options: ["Slushy", "The", "Noobz", "Both equally"], answer: 2 },
+    { emoji: "📊", q: "Roughly how many videos does the average successful YouTube creator need to build a consistent audience?", options: ["5–10", "50–100", "100+", "Exactly 42"], answer: 2 },
+    { emoji: "🏆", q: "In gaming culture, what does 'W' typically stand for?", options: ["Wasted", "Win", "Weird", "Whoops"], answer: 1 },
+    { emoji: "😂", q: "What does 'POV' stand for in YouTube/content creator slang?", options: ["Pretty Obvious Video", "Point of View", "Player One Vibes", "Power Over Viewers"], answer: 1 },
+    { emoji: "🎬", q: "What is a 'collab' in YouTube culture?", options: ["A type of video editing app", "Two or more creators making content together", "A comment section argument", "A paid sponsorship deal"], answer: 1 },
+    { emoji: "🔔", q: "What does clicking the 'bell' icon on YouTube do?", options: ["Adds the channel to Favorites", "Turns on notifications for new videos", "Saves the channel to Watch Later", "Shows your comment history"], answer: 1 },
+    { emoji: "🎯", q: "In gaming, what does 'GG' mean?", options: ["Go Get 'em", "Good Game", "Great Graphics", "Got Griefed"], answer: 1 },
+    { emoji: "📈", q: "What metric do YouTubers care about most for long-term growth?", options: ["Views", "Likes", "Watch Time / Subscriber loyalty", "Number of uploads per week"], answer: 2 },
+    { emoji: "🧠", q: "What does 'lore' mean when fans talk about a YouTube creator group?", options: ["Their merchandise line", "The backstory, history, and inside jokes of the group", "Their upload schedule", "Their comment moderation rules"], answer: 1 },
+  ];
+
+  let currentQ = 0;
+  let score = 0;
+  let answered = false;
+
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function startGame() {
+    currentQ = 0;
+    score = 0;
+    answered = false;
+    showScreen('screen-quiz');
+    loadQuestion();
+  }
+
+  function loadQuestion() {
+    answered = false;
+    const q = questions[currentQ];
+    document.getElementById('q-number').textContent = `Question ${currentQ + 1} / ${questions.length}`;
+    document.getElementById('q-score').textContent = `Score: ${score}`;
+    document.getElementById('q-emoji').textContent = q.emoji;
+    document.getElementById('question-text').textContent = q.q;
+    document.getElementById('feedback-bar').style.display = 'none';
+    document.getElementById('next-btn-wrap').style.display = 'none';
+
+    const pct = (currentQ / questions.length) * 100;
+    document.getElementById('progress-bar').style.width = pct + '%';
+
+    const grid = document.getElementById('options-grid');
+    grid.innerHTML = '';
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.textContent = opt;
+      btn.onclick = () => selectAnswer(i);
+      grid.appendChild(btn);
+    });
+  }
+
+  function selectAnswer(idx) {
+    if (answered) return;
+    answered = true;
+    const q = questions[currentQ];
+    const buttons = document.querySelectorAll('.option-btn');
+    buttons.forEach(b => b.disabled = true);
+
+    const fb = document.getElementById('feedback-bar');
+    fb.style.display = 'block';
+
+    if (idx === q.answer) {
+      score++;
+      buttons[idx].classList.add('correct');
+      fb.textContent = '✅ Correct! Nice one!';
+      fb.className = 'feedback-bar correct';
+    } else {
+      buttons[idx].classList.add('wrong');
+      buttons[q.answer].classList.add('reveal');
+      fb.textContent = `❌ Not quite! The answer was: ${q.options[q.answer]}`;
+      fb.className = 'feedback-bar wrong';
+    }
+
+    document.getElementById('q-score').textContent = `Score: ${score}`;
+    document.getElementById('next-btn-wrap').style.display = 'block';
+
+    if (currentQ === questions.length - 1) {
+      document.querySelector('#next-btn-wrap .btn-primary').textContent = 'See Results 🏆';
+    }
+  }
+
+  function nextQuestion() {
+    currentQ++;
+    if (currentQ >= questions.length) {
+      showResults();
+    } else {
+      loadQuestion();
+    }
+  }
+
+  function showResults() {
+    document.getElementById('progress-bar').style.width = '100%';
+    showScreen('screen-results');
+    document.getElementById('score-display').innerHTML = `${score} <span>/ ${questions.length}</span>`;
+
+    const pct = score / questions.length;
+    let emoji, title, msg;
+    if (pct === 1) {
+      emoji = '🏆'; title = 'PERFECT SCORE!';
+      msg = 'You are literally a Slushy Noobz expert. Incredible. We are not worthy.';
+    } else if (pct >= 0.8) {
+      emoji = '🔥'; title = 'On Fire!';
+      msg = 'That's a seriously impressive score. You clearly spend quality time on YouTube.';
+    } else if (pct >= 0.6) {
+      emoji = '😎'; title = 'Solid Run!';
+      msg = 'Not bad at all! You know your stuff. A few more videos and you'd ace it.';
+    } else if (pct >= 0.4) {
+      emoji = '🧊'; title = 'Getting Slushy';
+      msg = 'You're halfway there! Keep watching, keep learning, and try again.';
+    } else {
+      emoji = '🐣'; title = 'Certified Noob';
+      msg = 'Hey, everyone starts somewhere! Watch more Slushy Noobz and come back stronger.';
+    }
+
+    document.getElementById('result-emoji').textContent = emoji;
+    document.getElementById('result-title').textContent = title;
+    document.getElementById('result-msg').textContent = msg;
+  }
+</script>
+
+</body>
+</html>

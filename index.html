@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shay Russon – Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <style>
+    :root {
+      --cream: #f7f3ee;
+      --charcoal: #1c1c1c;
+      --gold: #b89a5a;
+      --muted: #6b6560;
+      --light-line: #e0d9d0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); }
+
+    /* NAV */
+    nav { background: var(--charcoal); padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-family: 'Cormorant Garamond', serif; color: var(--cream); font-size: 1.4rem; letter-spacing: 0.05em; text-decoration: none; }
+    .nav-links a { color: #c9c0b5; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; margin-left: 2rem; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    /* HERO */
+    .hero { min-height: 92vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 5rem 8vw; gap: 4rem; }
+    .hero-text { }
+    .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.05; color: var(--charcoal); margin-bottom: 1.5rem; }
+    .hero-name span { color: var(--gold); }
+    .hero-sub { font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 420px; margin-bottom: 2.5rem; }
+    .hero-cta { display: inline-block; background: var(--charcoal); color: var(--cream); padding: 0.85rem 2.2rem; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--charcoal); transition: all 0.25s; }
+    .hero-cta:hover { background: transparent; color: var(--charcoal); }
+    .hero-cta.outline { background: transparent; color: var(--charcoal); margin-left: 1rem; }
+    .hero-cta.outline:hover { background: var(--charcoal); color: var(--cream); }
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .hero-card { background: var(--charcoal); color: var(--cream); padding: 3rem 2.5rem; max-width: 340px; width: 100%; box-shadow: 24px 24px 0 var(--gold); }
+    .hero-card .label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .hero-card .value { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; margin-bottom: 1.5rem; }
+    .hero-stat { border-top: 1px solid #333; padding-top: 1rem; margin-top: 1rem; }
+
+    /* DIVIDER */
+    .section-divider { border: none; border-top: 1px solid var(--light-line); margin: 0; }
+
+    /* SECTIONS */
+    section { padding: 6rem 8vw; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; margin-bottom: 3rem; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
+    .about-facts { }
+    .fact-item { border-top: 1px solid var(--light-line); padding: 1.2rem 0; }
+    .fact-item:last-child { border-bottom: 1px solid var(--light-line); }
+    .fact-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+    .fact-value { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; }
+    .about-text p { font-size: 1rem; font-weight: 300; line-height: 1.9; color: #3a3530; margin-bottom: 1.2rem; }
+
+    /* EXPERIENCE */
+    .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; margin-bottom: 3.5rem; padding-bottom: 3.5rem; border-bottom: 1px solid var(--light-line); }
+    .exp-meta .company { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .exp-meta .date { font-size: 0.75rem; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; }
+    .exp-meta .location { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+    .exp-content .role { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; margin-bottom: 0.8rem; }
+    .exp-content ul { list-style: none; padding: 0; }
+    .exp-content ul li { font-size: 0.92rem; font-weight: 300; color: #3a3530; line-height: 1.7; padding-left: 1.2rem; position: relative; margin-bottom: 0.4rem; }
+    .exp-content ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
+    .skill-box { border: 1px solid var(--light-line); padding: 1.5rem; transition: border-color 0.2s, transform 0.2s; }
+    .skill-box:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .skill-icon { font-size: 1.5rem; color: var(--gold); margin-bottom: 0.8rem; }
+    .skill-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.3rem; }
+    .skill-note { font-size: 0.78rem; color: var(--muted); }
+
+    /* FOOTER */
+    footer { background: var(--charcoal); color: #999; padding: 2.5rem 8vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    footer .footer-name { font-family: 'Cormorant Garamond', serif; color: var(--cream); font-size: 1.2rem; }
+    footer .footer-links a { color: #999; font-size: 1.1rem; margin-left: 1rem; transition: color 0.2s; }
+    footer .footer-links a:hover { color: var(--gold); }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding: 3rem 5vw; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">S. Russon</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="resume.html">Résumé</a>
+    <a href="scratch.html">More</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Finance & Business</p>
+    <h1 class="hero-name">Shay<br><span>Russon</span></h1>
+    <p class="hero-sub">Pre-Business student at Brigham Young University with a passion for finance, leadership, and data-driven decision making.</p>
+    <a href="resume.html" class="hero-cta">View Résumé</a>
+    <a href="#about" class="hero-cta outline">Learn More</a>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="label">University</div>
+      <div class="value">BYU</div>
+      <div class="hero-stat">
+        <div class="label">GPA</div>
+        <div class="value">3.95</div>
+      </div>
+      <div class="hero-stat">
+        <div class="label">Expected Graduation</div>
+        <div class="value" style="font-size:1.6rem">Apr 2031</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">About</p>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-facts">
+      <div class="fact-item">
+        <div class="fact-label">Current School</div>
+        <div class="fact-value">Brigham Young University</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-label">Program</div>
+        <div class="fact-value">Pre-Business</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-label">Hometown</div>
+        <div class="fact-value">Snohomish, WA</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-label">Memberships</div>
+        <div class="fact-value">Finance Society · Women in Finance · CFAA</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <p>I'm a high-achieving Pre-Business student at Brigham Young University with a 3.95 GPA and a strong foundation in finance, accounting, and business analytics. I thrive at the intersection of data and leadership — whether that's managing a $50K budget as DECA chapter president or overseeing $100K in annual store revenue.</p>
+      <p>Beyond academics, I've led teams, mentored peers, organized large-scale events, and even traveled across 7 European countries. I bring a global perspective, a competitive mindset, and a genuine enthusiasm for tackling complex financial problems.</p>
+      <p>I'm actively building skills in data analysis tools like VBA and SQL and look forward to applying my education in corporate finance or advisory roles after graduation.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider"/>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Experience</p>
+  <h2 class="section-title">Where I've Worked</h2>
+
+  <div class="exp-item">
+    <div class="exp-meta">
+      <div class="company">DECA Inc.</div>
+      <div class="date">Apr 2023 – Jun 2025</div>
+      <div class="location">Snohomish, WA</div>
+    </div>
+    <div class="exp-content">
+      <div class="role">Chapter President</div>
+      <ul>
+        <li>Mentored 150+ members, helping 15+ qualify for DECA international competitions.</li>
+        <li>Oversaw $50K+ in chapter funds across travel, fees, and chapter initiatives.</li>
+        <li>Designed and delivered 15+ training sessions on financial analysis and case preparation.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-meta">
+      <div class="company">DECA Den – GPHS</div>
+      <div class="date">Sep 2024 – Jun 2025</div>
+      <div class="location">Snohomish, WA</div>
+    </div>
+    <div class="exp-content">
+      <div class="role">Store Manager</div>
+      <ul>
+        <li>Managed daily operations generating $100K+ annual revenue with full cash flow oversight.</li>
+        <li>Conducted financial reporting and reconciled budgets for 80+ products.</li>
+        <li>Balanced and verified daily cash drawers maintaining financial accuracy.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-meta">
+      <div class="company">Private Family</div>
+      <div class="date">Jun 2023 – Aug 2025</div>
+      <div class="location">Snohomish, WA</div>
+    </div>
+    <div class="exp-content">
+      <div class="role">Nanny</div>
+      <ul>
+        <li>Supervised and cared for 4 children (ages 1–10) across 32+ hours per week.</li>
+        <li>Organized 10+ weekly appointments, maintaining punctuality and consistency.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider"/>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Capabilities</p>
+  <h2 class="section-title">Skills & Strengths</h2>
+  <div class="skills-grid">
+    <div class="skill-box">
+      <div class="skill-icon"><i class="bi bi-bar-chart-line"></i></div>
+      <div class="skill-name">Financial Analysis</div>
+      <div class="skill-note">Budgeting, reporting, reconciliation</div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-icon"><i class="bi bi-code-square"></i></div>
+      <div class="skill-name">VBA & SQL</div>
+      <div class="skill-note">Data analysis and reporting tools</div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-icon"><i class="bi bi-people-fill"></i></div>
+      <div class="skill-name">Leadership</div>
+      <div class="skill-note">Teams, mentorship, event management</div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-icon"><i class="bi bi-clipboard-data"></i></div>
+      <div class="skill-name">Accounting</div>
+      <div class="skill-note">Principles of Accounting coursework</div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-icon"><i class="bi bi-globe2"></i></div>
+      <div class="skill-name">Global Perspective</div>
+      <div class="skill-note">Traveled across 7 European countries</div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-icon"><i class="bi bi-trophy"></i></div>
+      <div class="skill-name">Competition</div>
+      <div class="skill-note">Top 10 DECA Marketing Communication</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider"/>
+
+<footer>
+  <span class="footer-name">Shay L. Russon</span>
+  <div class="footer-links">
+    <a href="mailto:shaylrusson@gmail.com" title="Email"><i class="bi bi-envelope"></i></a>
+    <a href="https://linkedin.com" title="LinkedIn" target="_blank"><i class="bi bi-linkedin"></i></a>
+    <a href="resume.html" title="Résumé"><i class="bi bi-file-earmark-person"></i></a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

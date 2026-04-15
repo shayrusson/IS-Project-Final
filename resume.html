@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shay Russon – Résumé</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <style>
+    :root {
+      --cream: #f7f3ee;
+      --charcoal: #1c1c1c;
+      --gold: #b89a5a;
+      --muted: #6b6560;
+      --light-line: #e0d9d0;
+    }
+    body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); }
+
+    nav { background: var(--charcoal); padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-family: 'Cormorant Garamond', serif; color: var(--cream); font-size: 1.4rem; letter-spacing: 0.05em; text-decoration: none; }
+    .nav-links a { color: #c9c0b5; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; margin-left: 2rem; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    .resume-wrapper { max-width: 860px; margin: 4rem auto; padding: 0 2rem 4rem; }
+
+    .resume-header { text-align: center; padding-bottom: 2.5rem; border-bottom: 2px solid var(--charcoal); margin-bottom: 2.5rem; }
+    .resume-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 300; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .resume-header .contact-line { font-size: 0.85rem; color: var(--muted); letter-spacing: 0.05em; }
+    .resume-header .contact-line a { color: var(--muted); text-decoration: none; }
+    .resume-header .contact-line a:hover { color: var(--gold); }
+
+    .resume-section { margin-bottom: 2.5rem; }
+    .resume-section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--charcoal); border-bottom: 1px solid var(--charcoal); padding-bottom: 0.4rem; margin-bottom: 1.4rem; }
+
+    .resume-entry { margin-bottom: 1.6rem; }
+    .entry-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.15rem; }
+    .entry-org { font-weight: 500; font-size: 0.97rem; }
+    .entry-location { font-size: 0.82rem; color: var(--muted); }
+    .entry-role-line { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.5rem; }
+    .entry-role { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; font-style: italic; }
+    .entry-date { font-size: 0.78rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; }
+
+    .resume-entry ul { list-style: none; padding: 0; margin: 0; }
+    .resume-entry ul li { font-size: 0.88rem; font-weight: 300; line-height: 1.75; padding-left: 1.1rem; position: relative; margin-bottom: 0.2rem; }
+    .resume-entry ul li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; top: 0.25rem; }
+
+    .awards-list { list-style: none; padding: 0; }
+    .awards-list li { font-size: 0.88rem; font-weight: 300; padding-left: 1.1rem; position: relative; margin-bottom: 0.4rem; line-height: 1.7; }
+    .awards-list li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; top: 0.25rem; }
+
+    .skills-inline { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .skill-tag { background: var(--charcoal); color: var(--cream); font-size: 0.78rem; letter-spacing: 0.08em; padding: 0.35rem 0.9rem; border: 1px solid var(--charcoal); }
+
+    footer { background: var(--charcoal); color: #999; padding: 2rem 8vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    footer .footer-name { font-family: 'Cormorant Garamond', serif; color: var(--cream); font-size: 1.2rem; }
+    footer .footer-links a { color: #999; font-size: 1.1rem; margin-left: 1rem; transition: color 0.2s; }
+    footer .footer-links a:hover { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">S. Russon</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="resume.html" class="active">Résumé</a>
+    <a href="scratch.html">More</a>
+  </div>
+</nav>
+
+<div class="resume-wrapper">
+
+  <!-- HEADER -->
+  <div class="resume-header">
+    <h1>Shay L. Russon</h1>
+    <div class="contact-line">
+      6313 154th St SE, Snohomish, WA 98296 &nbsp;·&nbsp;
+      <a href="tel:4257910807">(425) 791-0807</a> &nbsp;·&nbsp;
+      <a href="mailto:shaylrusson@gmail.com">shaylrusson@gmail.com</a>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="resume-section">
+    <div class="resume-section-title">Education</div>
+    <div class="resume-entry">
+      <div class="entry-header">
+        <span class="entry-org">Brigham Young University</span>
+        <span class="entry-location">Provo, UT</span>
+      </div>
+      <div class="entry-role-line">
+        <span class="entry-role">Pre-Business</span>
+        <span class="entry-date">Expected Apr 2031</span>
+      </div>
+      <ul>
+        <li>Overall GPA: 3.95 / 4.00</li>
+        <li>Active Member: Finance Society, Women in Finance, Corporate Finance &amp; Advisory Association</li>
+        <li>Relevant Coursework: Principles of Finance, Principles of Accounting, Information Systems for Business</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="resume-section">
+    <div class="resume-section-title">Experience</div>
+
+    <div class="resume-entry">
+      <div class="entry-header">
+        <span class="entry-org">Private Family</span>
+        <span class="entry-location">Snohomish, WA</span>
+      </div>
+      <div class="entry-role-line">
+        <span class="entry-role">Nanny</span>
+        <span class="entry-date">Jun 2023 – Aug 2025</span>
+      </div>
+      <ul>
+        <li>Supervised and cared for 4 children (ages 1–10), 4 days per week, ensuring a safe and structured daily environment.</li>
+        <li>Coordinated 32+ hours per week of educational and recreational activities, supporting social and cognitive growth.</li>
+        <li>Organized 10+ weekly appointments and activities, maintaining punctuality and consistency for multiple children.</li>
+      </ul>
+    </div>
+
+    <div class="resume-entry">
+      <div class="entry-header">
+        <span class="entry-org">DECA Inc. – Glacier Peak High School Chapter</span>
+        <span class="entry-location">Snohomish, WA</span>
+      </div>
+      <div class="entry-role-line">
+        <span class="entry-role">President</span>
+        <span class="entry-date">Apr 2023 – Jun 2025</span>
+      </div>
+      <ul>
+        <li>Mentored 150+ members in competitive events, helping 15+ students qualify for DECA international competitions.</li>
+        <li>Oversaw $50K+ in chapter funds, allocating budgets for student travel, competition fees, and chapter initiatives.</li>
+        <li>Designed and delivered 15+ training sessions on presentation, financial analysis, and case preparation.</li>
+      </ul>
+    </div>
+
+    <div class="resume-entry">
+      <div class="entry-header">
+        <span class="entry-org">Glacier Peak High School – DECA Den</span>
+        <span class="entry-location">Snohomish, WA</span>
+      </div>
+      <div class="entry-role-line">
+        <span class="entry-role">Store Manager</span>
+        <span class="entry-date">Sep 2024 – Jun 2025</span>
+      </div>
+      <ul>
+        <li>Managed daily store operations generating $100K+ annual revenue, including cash flow management, inventory analysis, and sales tracking.</li>
+        <li>Conducted financial reporting and reconciled budgets for 80+ products, supporting strategic restocking decisions.</li>
+        <li>Balanced and verified daily cash drawers and transaction records, maintaining financial accuracy and accountability.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- LEADERSHIP & SERVICE -->
+  <div class="resume-section">
+    <div class="resume-section-title">Leadership &amp; Service</div>
+
+    <div class="resume-entry">
+      <div class="entry-header">
+        <span class="entry-org">Glacier Peak High School</span>
+        <span class="entry-location">Snohomish, WA</span>
+      </div>
+      <div class="entry-role-line">
+        <span class="entry-role">Senior Class Officer</span>
+        <span class="entry-date">Jun 2024 – Jun 2025</span>
+      </div>
+      <ul>
+        <li>Planned and managed all major senior class events including prom and fundraisers for 400+ students.</li>
+        <li>Led committees of 10–15 peers, assigning tasks, managing schedules, and ensuring smooth execution.</li>
+        <li>Optimized fundraising and sponsorship efforts to support senior events.</li>
+      </ul>
+    </div>
+
+    <div class="resume-entry">
+      <div class="entry-header">
+        <span class="entry-org">Glacier Peak High School</span>
+        <span class="entry-location">Snohomish, WA</span>
+      </div>
+      <div class="entry-role-line">
+        <span class="entry-role">Soccer Team Captain</span>
+        <span class="entry-date">Aug 2022 – Dec 2022</span>
+      </div>
+      <ul>
+        <li>Captain of a 22-member soccer team, coordinating practices and fostering a high-performing environment.</li>
+        <li>Guided underclassmen and new players, supporting skill development and team morale.</li>
+        <li>Directed pre-game warm-ups and tactical sessions to boost team readiness.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- AWARDS, SKILLS & INTERESTS -->
+  <div class="resume-section">
+    <div class="resume-section-title">Awards &amp; Skills</div>
+    <ul class="awards-list" style="margin-bottom:1.4rem;">
+      <li>Academic Excellence Award – Glacier Peak High School, 2025</li>
+      <li>Top 10 Placement – Marketing Communication, DECA Leadership Conference</li>
+      <li>Lead actor in a short film, completing a 5-month project from concept to premiere</li>
+      <li>Traveled to 7 European countries in one summer, gaining cultural awareness and global perspective</li>
+    </ul>
+    <div class="skills-inline">
+      <span class="skill-tag">Financial Analysis</span>
+      <span class="skill-tag">VBA</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">Budgeting</span>
+      <span class="skill-tag">Data Reporting</span>
+      <span class="skill-tag">Leadership</span>
+      <span class="skill-tag">Event Management</span>
+      <span class="skill-tag">Inventory Analysis</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-name">Shay L. Russon</span>
+  <div class="footer-links">
+    <a href="mailto:shaylrusson@gmail.com" title="Email"><i class="bi bi-envelope"></i></a>
+    <a href="https://linkedin.com" title="LinkedIn" target="_blank"><i class="bi bi-linkedin"></i></a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
